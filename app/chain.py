@@ -3,7 +3,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.exceptions import OutputParserException
 
-with open("../key.txt", "r") as f:
+with open("key.txt", "r") as f:
     api_key = f.readline().strip()
 
 
@@ -32,10 +32,10 @@ class Chain:
             json_res = json_parser.parse(res.content)
         except OutputParserException:
             raise OutputParserException("Content is too big.")
-        if isinstance(res, list):
-            return res
+        if isinstance(json_res, list):
+            return json_res
         else:
-            return [res]
+            return [json_res]
 
     def write_email(self, name, job_description, link_list):
         email_prompt = PromptTemplate.from_template("""

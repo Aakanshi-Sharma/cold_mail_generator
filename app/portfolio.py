@@ -4,7 +4,7 @@ import pandas as pd
 
 
 class Portfolio:
-    def __init__(self, file_path="app/resource/my_portfolio.csv"):
+    def __init__(self, file_path="app/resources/my_portfolio.csv"):
         self.file_path = file_path
         self.data = pd.read_csv(file_path)
         self.client = chromadb.PersistentClient('vectorstore')
